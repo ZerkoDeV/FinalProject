@@ -1,6 +1,6 @@
 #import libraries
 import pygame
-import os
+import os  #so that you can access the functions and anything else defined within the module using the module name. 
 import sys
 import time
 import math
@@ -15,7 +15,7 @@ screen_size = (width,height) = (600,400)
 
 #prefered fps u want for the game/ setting up the frames per second for the game
 FPS = 75
-white = (255,255,255)#color variables u want inside the game
+white = (255,255,255)#color variables u want inside the game(source: https://www.rapidtables.com/web/color/RGB_Color.html)
 black = (0,0,0)
 cyan = (0,255,255)
 
@@ -23,10 +23,10 @@ screen = pygame.display.set_mode(screen_size)#screen settings
 
 clock = pygame.time.Clock()#creating a clock object from pygame.time.Clock class
 
-pygame.display.set_caption('PongZ')#caption for the game
+pygame.display.set_caption('PongZ')#caption for the game/ name of the game shown on the window
 #a function to display the text on the screen with text, coordinates, fontsize and color parameter
 def displaytext(text,fontsize,x,y,color):
-    font = pygame.font.SysFont('szerko', fontsize, True)
+    font = pygame.font.SysFont('szerko', fontsize, True)#fontsize of the text displayed
     text = font.render(text, 1, color)
     textpos = text.get_rect(centerx=x, centery=y)
     screen.blit(text, textpos)
@@ -44,7 +44,7 @@ def cpumove(ball,cpu):
         cpu.movement[1] = 0
 
 #a class for the player's paddle, and has the checkbound, draw, update function inside it.
-class Paddle(pygame.sprite.Sprite):
+class Paddle(pygame.sprite.Sprite): #to access the available sprites(as in a computer graphics term for any object on the screen that can move around.) inside the pygame library
     def __init__(self,x,y,sizex,sizey,color):#x,y for the coordinates, sizes in each coordinate, color
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((sizex,sizey),SRCALPHA,32)#image that we get from the pygame library
@@ -68,10 +68,10 @@ class Paddle(pygame.sprite.Sprite):
     def update(self):
         self.rect = self.rect.move(self.movement)
         self.checkbounds()
-    #A function which checks whether the paddle is going out of bounds and make corrections accordingly
+    #A function which checks whether the paddle is going out of bounds and make corrections accordingly(in each perspective directions(top,bottom,left,right)
     def checkbounds(self):
-        if self.rect.top < 0:
-            self.rect.top = 0
+        if self.rect.top < 0: 
+            self.rect.top = 0 
         if self.rect.bottom > height:
             self.rect.bottom = height
         if self.rect.left < 0:
@@ -82,7 +82,7 @@ class Paddle(pygame.sprite.Sprite):
 class Ball(pygame.sprite.Sprite):
     def __init__(self,x,y,size,color,movement=[0,0]):#x,y is the coords,movement of the ball,color,and size is the diameter of the ball
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((size,size),SRCALPHA,32)#same as paddle
+        self.image = pygame.Surface((size,size),SRCALPHA,32)#same as paddle class
         self.rect = self.image.get_rect()
         self.image.convert_alpha()
         self.rect.centerx = x
