@@ -134,7 +134,7 @@ def main():
     my_paddle = Paddle(int(width/10),int(height/3),int(width/60),int(height*60/400),white)#creating the player's paddle(size,coord,color)
     cpu_paddle = Paddle(int(width - width/10),int(height/3),int(width/60),int(height*60/400),white)#cpu's paddle with the size,coords,and color of the paddle
     pongz_ball = Ball(width/2,height/2,width/60,cyan,[5,5])#creating the ball (size,coord,color)
-    while not game_over:#running the ame loop
+    while not game_over:#running the game loop
         for event in pygame.event.get():
             if event.type == pygame.QUIT:#checks, if the user has clicked the close button
                 quit()#quits the game/program
